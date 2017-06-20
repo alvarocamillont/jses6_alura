@@ -1,9 +1,9 @@
 class Negociacao {
   constructor (data, quantidade, valor) {
-    this._data = new Date(data) // Faz uma cópia pois o Freeze não congela os objetos internos
+    this._data = new Date(data.getTime())
     this._quantidade = quantidade
     this._valor = valor
-    Object.freeze(this) // Congela o Objeto não permitindo a alteração dos atributos
+    Object.freeze(this)
   }
 
   get volume () {
@@ -11,14 +11,14 @@ class Negociacao {
   }
 
   get data () {
-    return new Date(this._data)
-  }
-
-  get valor () {
-    return this._valor
+    return new Date(this._data.getTime())
   }
 
   get quantidade () {
     return this._quantidade
+  }
+
+  get valor () {
+    return this._valor
   }
 }
