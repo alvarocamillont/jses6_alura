@@ -1,4 +1,12 @@
 class NegociacaoService {
+/*
+xhr.readyState
+0: requisição ainda não iniciada.
+1: conexão com o servidor estabelecida.
+2: requisição recebida.
+3: processando requisição.
+4: requisição concluída e a resposta esta pronta.
+*/
   obterNegociacoesDaSemana (cb) {
     let xhr = new XMLHttpRequest()
     xhr.open('GET', 'negociacoes/semana')
