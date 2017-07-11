@@ -7,9 +7,9 @@ xhr.readyState
 3: processando requisição.
 4: requisição concluída e a resposta esta pronta.
 */
-  obterNegociacoesDaSemana (cb) {
+  _obterNegociacoes (cb, url, msgerro) {
     let xhr = new XMLHttpRequest()
-    xhr.open('GET', 'negociacoes/semana')
+    xhr.open('GET', url)
     xhr.onreadystatechange = () => {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
@@ -17,11 +17,23 @@ xhr.readyState
                         .map(objeto => new Negociacao(new Date(objeto.data), objeto.quantidade, objeto.valor)))
         } else {
           console.log(xhr.responseText)
-          cb('Não foi possível obter as negociações da semana', null)
+          cb(msgerro, null)
         }
       }
     }
 
     xhr.send()
+  }
+
+  obterNegociacoesDaSemana (cb) {
+    this._obterNegociacoes(cb, 'negociacoes/semana', 'Não foi possível obter as negociações da semana')
+  }
+
+  obterNegociacoesDaSemanaAnterior (cb) {
+    this._obterNegociacoes(cb, 'negociacoes/anterior', 'Não foi possível obter as negociações da semana anterior')
+  }
+
+  obterNegociacoesDaSemanaRetrasada (cb) {
+    this._obterNegociacoes(cb, 'negociacoes/retrasada', 'Não foi possível obter as negociações da semana Retrasada')
   }
 }
