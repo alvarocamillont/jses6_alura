@@ -65,9 +65,14 @@ class NegociacaoController {
   }
 
   apagar () {
-    this._listaNegociacoes.esvazia()
-    this._mensagem.texto = 'Lista excluída'
-    this._limpaFormulario()
+    ConnectionFactory
+    .getConnection()
+    .then(connection => new NegociacaoDao(connection))
+    .then(dao => dao.apagaTodos())
+    .then(mensagem => {
+      this._mensagem.texto = mensagem
+      this._listaNegociacoes.esvazia()
+    })
   }
 
   importaNegociacoes () {
