@@ -43,6 +43,10 @@ class NegociacaoDao {
           resolve(negociacoes)
         }
       }
+      cursor.onerror = e => {
+        console.log(e.target.error)
+        reject('Não foi possível listar as negociações')
+      }
     })
   }
 }
