@@ -35,4 +35,19 @@ xhr.readyState
   obterNegociacoesDaSemanaRetrasada (cb) {
     return this._obterNegociacoes('negociacoes/retrasada', 'Não foi possível obter as negociações da semana Retrasada')
   }
+
+  obterNegociacoes () {
+    return Promise.all([
+      this.obterNegociacoesDaSemana(),
+      this.obterNegociacoesDaSemanaAnterior(),
+      this.obterNegociacoesDaSemanaRetrasada()
+    ]).then(periodos => {
+      let negociacoes = periodos
+                .reduce((dados, periodo) => dados.concat(periodo), [])
+                .map(dado => new Negociacao(new Date(dado.data), dado.quantidade, dado.valor))
+      return negociacoes
+    }).catch(erro => {
+      throw new Error(erro)
+    })
+  }
 }
