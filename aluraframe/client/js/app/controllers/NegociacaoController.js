@@ -18,17 +18,25 @@ class NegociacaoController {
 
     this._ordemAtual = ''
 
+    this._init()
+  }
+
+  _init () {
     ConnectionFactory
         .getConnection()
         .then(connection => new NegociacaoDao(connection))
         .then(dao => dao.listaTodos())
         .then(negociacoes =>
             negociacoes.forEach(negociacao =>
-                this._listaNegociacoes.adiciona(negociacao)))
+              this._listaNegociacoes.adiciona(negociacao)))
         .catch(erro => {
           console.log(erro)
           this._mensagem.texto = erro
         })
+
+    setInterval(() => {
+      this.importaNegociacoes()
+    }, 3000)
   }
 
   adiciona (event) {
@@ -79,6 +87,11 @@ class NegociacaoController {
     let service = new NegociacaoService()
     service
         .obterNegociacoes()
+        .then(negociacoes =>
+            negociacoes.filter(negocicao =>
+                !this._listaNegociacoes.negociacoes.some(negociacaoExistente =>
+                    JSON.stringify(negocicao) == JSON.stringify(negociacaoExistente)))
+        )
         .then(negociacoes => negociacoes.forEach(negociacao => {
           this._listaNegociacoes.adiciona(negociacao)
           this._mensagem.texto = 'Negociações do período importadas'
