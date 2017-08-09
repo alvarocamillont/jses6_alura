@@ -58,6 +58,7 @@ xhr.readyState
             .then(dao => dao.adiciona(negociacao))
             .then(() => 'Negociação cadastrada com sucesso')
             .catch(erro => {
+              console.log(erro)
               throw new Error('Não foi possível adicionar a negociação')
             })
   }

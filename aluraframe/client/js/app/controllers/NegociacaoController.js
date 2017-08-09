@@ -17,12 +17,12 @@ class NegociacaoController {
         'texto')
 
     this._ordemAtual = ''
-
+    this._service = new NegociacaoService();
     this._init()
   }
 
   _init () {
-    new NegociacaoService()
+    this._service
         .lista()
         .then(negociacoes =>
             negociacoes.forEach(dado =>
@@ -39,7 +39,7 @@ class NegociacaoController {
 
     let negociacao = this._criaNegociacao()
 
-    new NegociacaoService()
+    this._service
             .cadastra(negociacao)
             .then(mensagem => {
               this._listaNegociacoes.adiciona(negociacao)
@@ -64,7 +64,7 @@ class NegociacaoController {
   }
 
   apagar () {
-    new NegociacaoService()
+    this._service
         .apaga()
         .then(mensagem => {
           this._mensagem.texto = mensagem
@@ -74,8 +74,7 @@ class NegociacaoController {
   }
 
   importaNegociacoes () {
-    let service = new NegociacaoService()
-    service
+    this._service
         .obterNegociacoes()
         .then(negociacoes =>
             negociacoes.filter(negocicao =>
