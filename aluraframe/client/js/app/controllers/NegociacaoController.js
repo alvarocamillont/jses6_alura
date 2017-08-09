@@ -22,17 +22,12 @@ class NegociacaoController {
   }
 
   _init () {
-    ConnectionFactory
-        .getConnection()
-        .then(connection => new NegociacaoDao(connection))
-        .then(dao => dao.listaTodos())
+    new NegociacaoService()
+        .lista()
         .then(negociacoes =>
-            negociacoes.forEach(negociacao =>
-              this._listaNegociacoes.adiciona(negociacao)))
-        .catch(erro => {
-          console.log(erro)
-          this._mensagem.texto = erro
-        })
+            negociacoes.forEach(dado =>
+                this._listaNegociacoes.adiciona(dado)))
+        .catch(erro => this._mensagem.texto = erro)
 
     setInterval(() => {
       this.importaNegociacoes()
@@ -69,14 +64,13 @@ class NegociacaoController {
   }
 
   apagar () {
-    ConnectionFactory
-    .getConnection()
-    .then(connection => new NegociacaoDao(connection))
-    .then(dao => dao.apagaTodos())
-    .then(mensagem => {
-      this._mensagem.texto = mensagem
-      this._listaNegociacoes.esvazia()
-    })
+    new NegociacaoService()
+        .apaga()
+        .then(mensagem => {
+          this._mensagem.texto = mensagem
+          this._listaNegociacoes.esvazia()
+        })
+        .catch(erro => this._mensagem.texto = erro)
   }
 
   importaNegociacoes () {
