@@ -85,4 +85,17 @@ xhr.readyState
           throw new Error('Não foi possível apagar as negociações')
         })
   }
+
+  importa (listaAtual) {
+    return this.obterNegociacoes()
+           .then(negociacoes =>
+               negociacoes.filter(negociacao =>
+                   !listaAtual.some(negociacaoExistente =>
+                       JSON.stringify(negociacao) === JSON.stringify(negociacaoExistente)))
+           )
+           .catch(erro => {
+             console.log(erro)
+             throw new Error('Não foi possível importar as negociações')
+           })
+  }
 }
