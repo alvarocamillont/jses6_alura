@@ -1,4 +1,6 @@
-class NegociacoesView extends View {
+import {View} from './View'
+import {DateHelper} from '../helpers/DateHelper.js'
+export class NegociacoesView extends View {
   template (model) {
     return `
         <table class="table table-hover table-bordered">

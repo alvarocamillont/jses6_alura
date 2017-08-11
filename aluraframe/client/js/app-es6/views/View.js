@@ -1,4 +1,4 @@
-class View {
+export class View {
   constructor (elemento) {
     this._elemento = elemento
   }
@@ -8,6 +8,6 @@ class View {
   }
 
   template () {
-    throw new Error("Função _template deve ser sobrescrita")
+    throw new Error('Função _template deve ser sobrescrita')
   }
 }
