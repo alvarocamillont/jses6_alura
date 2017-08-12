@@ -1,11 +1,11 @@
 import {Negociacao} from '../models/Negociacao.js'
-import {ListaNegociacoes} from '../models/ListaNegociacoes.js'
+import {ListaNegociacoes} from '../models/ListaNegociacao'
 import {Mensagem} from '../models/Mensagem.js'
 
 import {Bind} from '../helpers/Bind.js'
 import {DateHelper} from '../helpers/DateHelper.js'
 import {NegociacoesView} from '../views/NegociacoesView.js'
-import {MensagemView} from '../views/MensagemView.js'
+import {MensagemView} from '../views/Mensagem.js'
 import {NegociacaoService} from '../services/NegociacaoService.js'
 export class NegociacaoController {
   constructor () {

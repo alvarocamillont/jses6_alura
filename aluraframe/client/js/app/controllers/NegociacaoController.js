@@ -1,6 +1,6 @@
 'use strict';
 
-System.register(['../models/Negociacao.js', '../models/ListaNegociacoes.js', '../models/Mensagem.js', '../helpers/Bind.js', '../helpers/DateHelper.js', '../views/NegociacoesView.js', '../views/MensagemView.js', '../services/NegociacaoService.js'], function (_export, _context) {
+System.register(['../models/Negociacao.js', '../models/ListaNegociacao', '../models/Mensagem.js', '../helpers/Bind.js', '../helpers/DateHelper.js', '../views/NegociacoesView.js', '../views/Mensagem.js', '../services/NegociacaoService.js'], function (_export, _context) {
   "use strict";
 
   var Negociacao, ListaNegociacoes, Mensagem, Bind, DateHelper, NegociacoesView, MensagemView, NegociacaoService, _createClass, NegociacaoController;
@@ -14,8 +14,8 @@ System.register(['../models/Negociacao.js', '../models/ListaNegociacoes.js', '..
   return {
     setters: [function (_modelsNegociacaoJs) {
       Negociacao = _modelsNegociacaoJs.Negociacao;
-    }, function (_modelsListaNegociacoesJs) {
-      ListaNegociacoes = _modelsListaNegociacoesJs.ListaNegociacoes;
+    }, function (_modelsListaNegociacao) {
+      ListaNegociacoes = _modelsListaNegociacao.ListaNegociacoes;
     }, function (_modelsMensagemJs) {
       Mensagem = _modelsMensagemJs.Mensagem;
     }, function (_helpersBindJs) {
@@ -24,8 +24,8 @@ System.register(['../models/Negociacao.js', '../models/ListaNegociacoes.js', '..
       DateHelper = _helpersDateHelperJs.DateHelper;
     }, function (_viewsNegociacoesViewJs) {
       NegociacoesView = _viewsNegociacoesViewJs.NegociacoesView;
-    }, function (_viewsMensagemViewJs) {
-      MensagemView = _viewsMensagemViewJs.MensagemView;
+    }, function (_viewsMensagemJs) {
+      MensagemView = _viewsMensagemJs.MensagemView;
     }, function (_servicesNegociacaoServiceJs) {
       NegociacaoService = _servicesNegociacaoServiceJs.NegociacaoService;
     }],
