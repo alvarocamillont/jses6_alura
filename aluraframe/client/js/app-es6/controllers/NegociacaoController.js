@@ -7,7 +7,7 @@ import {DateHelper} from '../helpers/DateHelper.js'
 import {NegociacoesView} from '../views/NegociacoesView.js'
 import {MensagemView} from '../views/Mensagem.js'
 import {NegociacaoService} from '../services/NegociacaoService.js'
-export class NegociacaoController {
+class NegociacaoController {
   constructor () {
     let $ = document.querySelector.bind(document)
     this._ordemAtual = ''
@@ -100,4 +100,9 @@ export class NegociacaoController {
     }
     this._ordemAtual = coluna
   }
+}
+
+let negociacaoController = new NegociacaoController()
+export function currentInstance () {
+  return negociacaoController
 }

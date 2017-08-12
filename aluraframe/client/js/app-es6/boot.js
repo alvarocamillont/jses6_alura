@@ -1,6 +1,6 @@
-import {NegociacaoController} from './controllers/NegociacaoController.js'
+import {currentInstance} from './controllers/NegociacaoController'
 
-let negociacaoController = new NegociacaoController()
+let negociacaoController = currentInstance()
 
 document.querySelector('.form').onsubmit = negociacaoController.adiciona.bind(negociacaoController)
 document.querySelector('#apagar').onclick = negociacaoController.apagar.bind(negociacaoController)
